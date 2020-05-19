@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+	<!-- 配置注解扫描器 -->
+	<context:component-scan base-package="com.etoak">
+		<!-- 表示只扫描@Controller注解 -->
+		<context:include-filter type="annotation" 
+		expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan> 
+	
+	<!-- 开启spring mvc配置 -->
+	<!-- 作用 -->
+	<!-- 1. 可以代替@RequestMappingHandlerMapping和@RequestMappingHandlerAdapter -->
+	<!-- 2. 内置了大量参数转换器 -->
+	<!-- 3. 也可以自定义转换器 -->
+	<!-- 4. 可以使用@RequestBody接受json参数，也可以使用@ResponseBody -->
+	<!-- 4.1 默认使用Jackson框架进行json转换 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	
+	<!-- spring mvc的静态处理方式 -->
+	<!-- 将静态资源（css，js）等交给servlet容器内置的名字叫default-servlet-handler -->
+	<mvc:default-servlet-handler/>
+	
+	<!-- 定制静态资源位置和访问路径 -->
+	<!-- 定制到classpath:/static/,访问url:/s/** -->
+	<!-- http://ip:port/context/s/jquest.js -->
+	<!-- location属性：定义静态资源属性 -->
+	<!-- mapping属性：定义静态访问url，可以使用通配符，一个*表示只能访问一层目录，两个*表示可以访问多层目录 -->
+	<mvc:resources location="classpath:/static/" mapping="/s/**"/>
+	
+	<mvc:resources location="file:c:/upload/" mapping="/pic/**"/>
+	
+	<mvc:resources location="file:c:/upload/" mapping="/**"/>
+	
+	<!-- 视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	
+		<property name="prefix" value="/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</beans>
+
+
+
+
+
+
+
+
+
