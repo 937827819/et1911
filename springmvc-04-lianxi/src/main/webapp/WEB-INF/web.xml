@@ -3,36 +3,22 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-
-	<listener>
-		<listener-class>
-			org.springframework.web.context.ContextLoaderListener
-		</listener-class>
-	</listener>
-	<!-- 如果不配置这个参数，那么contextConfigLocation默认读取/WEB-INF/ -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring-root.xml</param-value>
-	</context-param>
-	
-	
-
-	<!-- post请求编码过滤器 -->
 	<filter>
-		<filter-name>encoding</filter-name>
+		<filter-name>end</filter-name>
 		<filter-class>
 			org.springframework.web.filter.CharacterEncodingFilter
 		</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
-		</init-param>
+		</init-param>	
 	</filter>
 	
 	<filter-mapping>
-		<filter-name>encoding</filter-name>
+		<filter-name>end</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
 	
 	<servlet>
 		<servlet-name>et</servlet-name>
@@ -50,8 +36,5 @@
 		<servlet-name>et</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-	
-	
 	
 </web-app>
