@@ -96,6 +96,12 @@
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 		</dependency>
+		
+		<!-- 使用hibernate-validator实现后端校验  @NutNull  @Size等-->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>springmvc-05-car</finalName>

@@ -17,10 +17,12 @@
 		 expression="org.springframework.stereotype.Controller"/>
 		<context:include-filter type="annotation"
 		 expression="org.springframework.web.bind.annotation.RestController"/>
+		<context:include-filter type="annotation"
+		 expression="org.springframework.web.bind.annotation.ControllerAdvice"/> 
 		 <!-- 排除 -->
-		 <context:exclude-filter type="annotation" 
+		<context:exclude-filter type="annotation" 
 		 expression="org.springframework.stereotype.Service"/>
-		 <context:exclude-filter type="annotation"
+		<context:exclude-filter type="annotation"
 		 expression="org.springframework.stereotype.Repository"/>
 	</context:component-scan>
 	

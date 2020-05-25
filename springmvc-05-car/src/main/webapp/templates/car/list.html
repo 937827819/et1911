@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<link th:href="@{/static/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+		<title>车辆列表</title>
+		<style type="text/css">
+			.carPage {
+				width: 260px;
+				margin: 0px auto;
+				padding-top: 20px;
+			
+			}
+		</style>
+	</head>
+	<body>
+	   <h2>车辆列表</h2>
+	   <!-- 车辆列表展示 -->
+		<div class="container-fluid">
+			<div class="row" id="carList">
+			 	
+			</div>
+		</div>
+	   <div class="carPage">
+	   	 <button id="firstPage" class="btn btn-primary" type="button">首页</button>
+	   	 
+	   	 <button id="prePage" class="btn btn-success" type="button">上一页</button>
+	   	 
+	   	 <button id="nextPage" class="btn btn-info" type="button">下一页</button>
+	   	 
+	   	 <button id="lastPage" class="btn btn-danger" type="button">尾页</button>
+	   	  	 
+	   </div>
+	   
+	   
+		<script th:src="@{/static/js/jquery/jquery.min.js}" type="text/javascript"></script>
+		<script th:src="@{/static/bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+		<script th:src="@{/static/js/validate/jquery.validate.min.js}" type="text/javascript"></script>
+		<script th:src="@{/static/js/validate/messages_zh.min.js}" type="text/javascript"></script>
+		<script th:src="@{/static/js/laydate/laydate.js}" type="text/javascript"></script>
+		<script th:inline="javascript" type="text/javascript">
+			//request对象中的contextPath
+			const path = /*[[${#request.getContextPath()}]]*/
+			
+			let pageNum,pageSize = 8;
+			//当前页
+			let currentPage = 1
+			let pageCount = ''
+				// 加载方式
+				$(function () {
+					et1911.queryList();
+					
+					// 点击首页
+					$('#firstPage').click(function () {
+						et1911.queryList();
+					});
+					
+					// 上一页（当前页减一）
+					$('#prePage').click(function () {
+						et1911.queryList(--currentPage);
+					});
+					
+					// 下一页（当前页加一）
+					$('#nextPage').click(function () {
+						et1911.queryList(++currentPage);
+					});
+					
+					// 尾页（总页数）
+					$('#lastPage').click(function () {
+						et1911.queryList(pageCount);
+					})
+					
+				});
+			
+			let et1911 = {
+				queryList:function(pageNum,pageSize){
+					//如果pageNum不传（或者传入'' undefined）这时就选取后面的值
+					pageNum = pageNum || 1
+					pageSize = pageSize || 6
+					$.ajax({
+						url:path + '/car/list',
+						type:'GET',
+						data:'pageNum=' + pageNum + '&pageSize=' + pageSize,
+						dataType:'json',
+						success:function(res){
+							//当前页
+							currentPage = res.pageNum
+							//总页数
+							pageCount = res.pageCount
+							
+							let divs = '';
+							$.each(res.rows,function(index,car){
+								divs+="<div class='col-md-3'>"
+								+"<img class='img-thumbnail' src='"+ path + car.pic+"'>"
+								+"<p>"+car.brand+"/"+car.series+"</p>"
+								+"<p>"+car.price+"万元"+"</p>"
+								+"<p>"+car.gearboxName+"</p>"
+								+"</div>"
+							})
+							$('#carList').html(divs);
+							//如果是第一页把首页和上一页按钮视为不可用
+							if(res.first){
+								$('#fistPage').attr('disabled','disabled')
+								$('#prePage').attr('disabled','disabled')
+							}else{
+								$('#fistPage').removeAttr('disabled')
+								$('#prePage').removeAttr('disabled')
+							}
+							//如果是最后一页 把尾页和下一页按钮为不可用、
+							if(res.last){
+								$('#lastPage').attr('disabled','disabled')
+								$('#nextPage').attr('disabled','disabled')
+							}else{
+								$('#lastPage').removeAttr('disabled')
+								$('#nextPage').removeAttr('disabled')
+							}
+						}
+					})
+				}	
+			}
+			
+		</script>
+	</body>
+</html>
