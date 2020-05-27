@@ -80,9 +80,7 @@ public class CarController {
 			
 		}
 		
-		
-		
-		
+	
 		// 新文件名称: uuid_originalFilename
 		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 		String newFilename = uuid + "_" + originalFilename;
@@ -91,7 +89,7 @@ public class CarController {
 		File destFile = new File("c:/upload",newFilename);
 		
 		// 执行上传
-		file.transferTo(destFile);;
+		file.transferTo(destFile);
 		
 		// 设置图片地址
 		car.setPic("/pic/" + newFilename);
@@ -113,11 +111,12 @@ public class CarController {
 	public PageVo<CarVo> queryList(
 		@RequestParam(required = false,defaultValue = "1")int pageNum,
 		@RequestParam(required = false,defaultValue = "8")int pageSize,
-		CarVo carVo){
+		CarVo carVo,String[] priceList){
 		
-		return carService.queryList(pageNum, pageSize, carVo);
+		return carService.queryList(pageNum, pageSize, carVo,priceList);
 		
 	}
+	
 	
 	/**
 	 * 查询所有品牌

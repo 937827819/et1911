@@ -24,10 +24,11 @@ public interface CarService {
 	 * @param pageNum
 	 * @param pageSize
 	 * @param carVo
+	 * @param priveList 
 	 * @return
 	 */
 	PageVo<CarVo> queryList(int pageNum, int pageSize, //
-			CarVo carVo);
+			CarVo carVo, Object priveList);
 
 	/**
 	 * 获取所有的品牌
@@ -43,5 +44,8 @@ public interface CarService {
 	 * @return
 	 */
 	List<String> getSeriesByBrand(@Param("brand") String brand);
+
+	
+	PageVo<CarVo> queryList(int pageName, int pageSize, CarVo carVo, String[] priceList);
 
 }

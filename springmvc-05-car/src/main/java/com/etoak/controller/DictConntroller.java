@@ -22,7 +22,7 @@ public class DictConntroller {
 	@Autowired
 	DictService dictService;
 	
-	@GetMapping("/{groupId}")
+	@GetMapping("/{groupId}")	// @PathVariable：把请求路径当做参数， rest风格
 	public List<Dict> queryList(@PathVariable String groupId){
 		
 		log.info("param groupId - {}", groupId);
