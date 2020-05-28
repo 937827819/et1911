@@ -1,5 +1,7 @@
 package com.etoak.service.impl;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,22 +9,22 @@ import com.etoak.bean.User;
 import com.etoak.mapper.UserMapper;
 import com.etoak.service.UserService;
 
+
 @Service
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	UserMapper userMapper;
 	
+	
 	@Override
-	public User getById(int id) {
+	public int addUser(User user) {
 		
-		return userMapper.getById(id);
-	}
+		String userId = UUID.randomUUID().toString().replace("-", ""); 
+		user.setUserId(userId);
+		user.setStatus(0);
+		return userMapper.addUser(user);
 
-	@Override
-	public User getByNameAndPassword(String name, String passWord) {
-		
-		return userMapper.getByNameAndPassword(name, passWord);
 	}
 
 }

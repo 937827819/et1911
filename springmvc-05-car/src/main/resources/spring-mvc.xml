@@ -32,6 +32,11 @@
 	<!-- 3.静态文件由Servlet容器处理 -->
 	<mvc:default-servlet-handler/>
 	
+	<!-- 只写工程名 直接跳转到index.html -->
+	<mvc:view-controller path="/" view-name="index"/>
+	
+	<mvc:view-controller path="/user/toLogin" view-name="login"/>
+	
 	<!-- 定义图片的访问方式 -->
 	<mvc:resources location="file:c:/upload/" mapping="/pic/**"/>
 	
@@ -66,8 +71,17 @@
 	
 	</bean>
 	
-	
-	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 配置需要拦截的地址, /**表示拦截所有层级的请求 -->
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/static/**"/>
+			<mvc:exclude-mapping path="/code"/>
+			<mvc:exclude-mapping path="/user/toLogin"/>
+			<mvc:exclude-mapping path="/user/login"/>
+			<bean class="com.etoak.interecept.LoginIntterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>	
 </beans>
 
 

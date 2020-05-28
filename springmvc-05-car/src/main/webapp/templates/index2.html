@@ -15,7 +15,7 @@
 		
 		<h2>从session取值:
 			<span th:text="${session.sessionUser.id}"></span>
-			<span th:text="${session.sessionUser.name}"></span>
+			<span th:text="${session.sessionUser.name}"></span>	
 		</h2>
 		
 		<hr style="margin-top:20px">
@@ -44,7 +44,7 @@
 		
 		<hr style="margin-top:20px">
 		
-		<a th:href="@{/add(name=get)}">get请求传参</a>
+		<a th:href="@{/car/toAdd)}">get请求传参</a>
 		
 		<hr style="margin-top:20px">
 		
