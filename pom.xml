@@ -13,10 +13,10 @@
 		<module>springmvc-03</module>
 		<module>springmvc-04-param</module>
 		<module>springmvc-05-car</module>
-    <module>springmvc-04-lianxi</module>
     <module>et1911-activemq</module>
     <module>activemq-springmvc</module>
-  </modules>
+		<module>et1911-webservice</module>
+	</modules>
 
 	<!-- 作用:声明依赖（管理依赖），但是不引入依赖，由子工程决定自己需要的依赖 -->
 	<dependencyManagement>

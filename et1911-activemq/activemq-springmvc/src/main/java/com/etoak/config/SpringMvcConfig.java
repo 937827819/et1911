@@ -20,7 +20,6 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
 
-
 // 这是一个spring mvc容器
 @Configuration //<beans>
 @ComponentScan(
@@ -67,6 +66,7 @@ public class SpringMvcConfig implements WebMvcConfigurer{
 		resolver.setCheckExistence(false);
 		
 		return resolver;
+		
 	}
 	
 	
@@ -88,19 +88,5 @@ public class SpringMvcConfig implements WebMvcConfigurer{
 		return resolver;
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

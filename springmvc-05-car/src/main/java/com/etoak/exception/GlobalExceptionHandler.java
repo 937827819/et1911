@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 全局异常处理器
- * 注解@ComtrollerAdvice会在所有被@Controller注解的方法上海加一个拦截，
+ * 注解@ComtrollerAdvice会在所有被@Controller注解的方法上加一个拦截，
  * 当控制器的方法有异常
  * 
  * */
